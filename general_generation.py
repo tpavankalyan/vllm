@@ -53,7 +53,6 @@ def extract_output(batch_outputs, batch_seed_data):
 
 def generate(prompt_path, seed_data_path, output_name):
     seed_data = load_jsonl_indent(seed_data_path)
-    seed_data = seed_data[len(seed_data)//2:]
     prompts = load_json(prompt_path)
 
     system_prompt = prompts['system']
@@ -74,7 +73,7 @@ def generate(prompt_path, seed_data_path, output_name):
               enable_chunked_prefill=True, max_num_batched_tokens=256,
               max_num_seqs=256, max_model_len=2048)
     
-    output_file = f"/datadrive/pavan/CurLL/data/skill_graph/{output_name}.jsonl"
+    output_file = output_name
     total_tokens = 0
     batch_size = 1024
     all_outputs = []
